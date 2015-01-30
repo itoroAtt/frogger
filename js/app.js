@@ -1,4 +1,10 @@
 /**
+ * Constants
+ * @const
+ */
+ var POSITION_85 = 85, POSITION_100 = 100, POSITION_400 = 400;
+
+/**
  * Creates Enemy Player Piece
  * @constructor
  */
@@ -15,12 +21,14 @@ var Enemy = function(x,y) {
 var Player = function() {
 	this.sprite = 'images/char-pink-girl.png';
 	this.x = 0;
-	this.y = 400;
+	this.y = POSITION_400;
 }
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+/**
+ * Variables
+ * @type {object}
+ * @type {Array.<number>}
+ */
 var allEnemies = [], defaultEnemyLanesX = [-200, -100, 50, 100, 200], defaultEnemyLanesY = [65, 145, 225];
 var enemyCounter;
 var enemy1, enemy2, enemy3, enemy4, enemy5;
@@ -60,8 +68,6 @@ Enemy.prototype.render = function() {
  */
 Player.prototype.update = function() {
 	this.checkPlayerCollisions();
-	
-	
 }
 
 /**
@@ -81,7 +87,7 @@ Player.prototype.checkPlayerCollisions = function() {
 	}
 	for (counter in allEnemies) {
 		if(allEnemies[counter].x+70 > this.x+10 && allEnemies[counter].x <this.x+85 && allEnemies[counter].y+5 >= this.y) {
-			player.reset();		
+			player.reset();
 		}
 	}
 }
@@ -90,7 +96,7 @@ Player.prototype.checkPlayerCollisions = function() {
  * Resets Player piece to bottom of column where collision occured.
  */
 Player.prototype.reset = function() {
-	this.y = 400;
+	this.y = POSITION_400;
 }
 
 /**
@@ -98,20 +104,20 @@ Player.prototype.reset = function() {
  * @param {keyPressed} keyPressed is the keyboard key that was pressed.
  */
 Player.prototype.handleInput = function(keyPressed) {
-	if(keyPressed === 'right' && this.x < 400) {
-		this.x += 100;
+	if(keyPressed === 'right' && this.x < POSITION_400) {
+		this.x += POSITION_100;
 	}
 
 	if(keyPressed ==='left' && this.x > 82) {
-		this.x -= 100;
+		this.x -= POSITION_100;
 	}
 
-	if(keyPressed === 'down' && this.y < 400) {
-		this.y += 85;
+	if(keyPressed === 'down' && this.y < POSITION_400) {
+		this.y += POSITION_85;
 	}
 
 	if(keyPressed === 'up' && this.y > 52) {
-		this.y -= 85;
+		this.y -= POSITION_85;
 	}
 }
 
